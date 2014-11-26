@@ -37,7 +37,6 @@ var stringifyJSON = function(obj) {
 			for(var prop in obj){
 				val = obj[prop];
 				var eType = typeof(val);
-				console.log(prop, val, eType);
 				if(eType != "undefined" && eType != "function"){
 					objString += p+prop+p+":"+stringifyJSON(val)+",";
 				}
