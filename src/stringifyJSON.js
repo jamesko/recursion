@@ -16,9 +16,10 @@ var stringifyJSON = function(obj) {
 		case "string":{return p+obj+p};
 		case "array":{
 			//undefined or function type elements are stored in array as null
+			var eType;
 			obj.forEach(function(element){
 				eType = typeof(element);
-				if(eType!=undefined && eType!="function"){
+				if(eType!="undefined" && eType!="function"){
 					objString += stringifyJSON(element) + ",";
 				}
 				else
@@ -30,6 +31,19 @@ var stringifyJSON = function(obj) {
 		};
 		case "object":{
 			//undefined or function type property values are skipped
+			//jasmine expects {} to equal null
+			if (obj == null) return "null";
+			var val;
+			for(var prop in obj){
+				val = obj[prop];
+				var eType = typeof(val);
+				console.log(prop, val, eType);
+				if(eType != "undefined" && eType != "function"){
+					objString += p+prop+p+":"+stringifyJSON(val)+",";
+				}
+			}
+			return "{"+objString.slice(0,-1)+"}";
 		};
 	}
 };
+
