@@ -4,7 +4,7 @@
 // but you don't so you're going to write it from scratch:
 var stringifyJSON = function(obj) {
 
-	var type = typeof(obj);
+	var type = Array.isArray(obj) ? "array": typeof(obj);
 	var objString = "";	
 	var p = "\"";
 
@@ -19,14 +19,14 @@ var stringifyJSON = function(obj) {
 			obj.forEach(function(element){
 				eType = typeof(element);
 				if(eType!=undefined && eType!="function"){
-					objString += stringifyJSON(element);
+					objString += stringifyJSON(element) + ",";
 				}
 				else
 				{
-					objString += "null";
+					objString += "null" + ",";
 				}
 			})
-			return "["+objString+"]";
+			return "["+objString.slice(0,-1)+"]";
 		};
 		case "object":{
 			//undefined or function type property values are skipped
