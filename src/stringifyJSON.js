@@ -21,9 +21,7 @@ var stringifyJSON = function(obj) {
 				eType = typeof(element);
 				if(eType!="undefined" && eType!="function"){
 					objString += stringifyJSON(element) + ",";
-				}
-				else
-				{
+				} else {
 					objString += "null" + ",";
 				}
 			})

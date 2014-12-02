@@ -7,9 +7,9 @@
 var getElementsByClassName = function(className){
 
 	var result = [];
-
-	//recursion function
-	function getDown(element){
+  
+  //get element if target class with recursion
+	var getDown = function(element){
 		if(element.classList != undefined){
 			if(element.classList.contains(className)){
 				result.push(element);
